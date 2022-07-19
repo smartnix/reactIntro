@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AppUI } from "./App/AppUI";
 
 
@@ -14,39 +14,69 @@ import { AppUI } from "./App/AppUI";
 
 function useLocalStorage(itemName, initalValue) 
 {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   
-  const localStorageItem = localStorage.getItem(itemName);
-  let parsedItem;
+  const [item, setItem] = useState(initalValue);
+  
+  useEffect(() => {
+    setTimeout(() => {
 
-  if(!localStorageItem)
-  {
-    localStorage.setItem(itemName, JSON.stringify(initalValue));
-    parsedItem = [];
-  }
-  else
-  {
-    parsedItem = JSON.parse(localStorageItem);
-  }
+      try {
+        
+          const localStorageItem = localStorage.getItem(itemName);
+          let parsedItem;
+        
+          if(!localStorageItem)
+          {
+            localStorage.setItem(itemName, JSON.stringify(initalValue));
+            parsedItem = [];
+          }
+          else
+          {
+            parsedItem = JSON.parse(localStorageItem);
+          }
 
-  const [item, setItem] = useState(parsedItem);
+          setItem(parsedItem);
+          setLoading(false);
+      } catch (error) {
+        setError(error);
+      }
+
+    },2000)
+  }, [])
 
   const saveItem =  (newItem) => {
-    const stringifiedItem = JSON.stringify(newItem);
-    localStorage.setItem(itemName,  stringifiedItem);
-    setItem(newItem);
+
+    try {
+      const stringifiedItem = JSON.stringify(newItem);
+      localStorage.setItem(itemName,  stringifiedItem);
+      setItem(newItem);
+      
+    } catch (error) {
+      setError(error);
+    }
   }
 
-  return [
+  return {
     item,
-    saveItem
-  ];
+    saveItem,
+    loading,
+    error
+  };
 
 }
 
 function App() 
 {
 
-  const [todos, saveTodos] = useLocalStorage('TODOS_V1',[]);
+  const {
+    item: todos,
+    saveItem: saveTodos,
+    loading,
+    error
+
+  } = useLocalStorage('TODOS_V1',[]);
 
   const [searchValue, setSearchValue] = useState('');
 
@@ -94,6 +124,12 @@ function App()
     saveTodos(newTodos);
   }
 
+
+  useEffect(() => {
+    console.log('use efect')
+  }, [totalTodos]);// segundo parametro para saber cuando ejecuar el useEffect solo una vez pero si cuando  hay cambioos en el estado
+  
+
   return (
     <AppUI 
       totalTodos = {totalTodos}
@@ -103,7 +139,8 @@ function App()
       searchedTodos = {searchedTodos}
       completeTodo = {completeTodo}
       deleteTodo = {deleteTodo}
-
+      loading = {loading}
+      error = {error}
     />
   );
 }
