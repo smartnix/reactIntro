@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocalStorage } from "./useLocalStorage";
 
 function useTodos() 
@@ -62,7 +62,6 @@ function useTodos()
     
         // todos[todoIndex] = {text:todos[todoIndex].text,completed:true}
         newTodos.splice(todoIndex,1);
-        console.log(newTodos);
         saveTodos(newTodos);
       }
     

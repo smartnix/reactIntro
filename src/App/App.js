@@ -99,24 +99,37 @@ function App()
             />
         </TodoHeader>
 
-        {/* <TodoContext.Consumer> */}
+       
         <TodoList 
-            erro = {error}
+            totalTodos = {totalTodos}
+            error = {error}
             loading = {loading}
+            searchText={searchValue}
             searchedTodos = {searchedTodos}
             onError = {() => <TodosError/>}
             onLoading = {() => <TodosLoading/>}
             onEmptyTodos = {() => <EmptyTodos/>}
-            render = {todo => (
-                                <TodoItem 
-                                key={todo.text}
-                                text={todo.text}
-                                completed = {todo.completed}
-                                onCompleted = {() => completeTodo(todo.text)}
-                                onDelete={() => deleteTodo(todo.text)}
-                                />  
-            )}
-        />
+            onEmptySearchResults = {(searchText) => <p>No hay resultados para {searchText}</p>}
+            // render = {todo => (
+            //                     <TodoItem 
+            //                     key={todo.text}
+            //                     text={todo.text}
+            //                     completed = {todo.completed}
+            //                     onCompleted = {() => completeTodo(todo.text)}
+            //                     onDelete={() => deleteTodo(todo.text)}
+            //                     />  
+            // )}
+        >
+            {todo => (
+                        <TodoItem 
+                        key={todo.text}
+                        text={todo.text}
+                        completed = {todo.completed}
+                        onCompleted = {() => completeTodo(todo.text)}
+                        onDelete={() => deleteTodo(todo.text)}
+                        />  
+                    )}
+        </TodoList>
         {/* <TodoList>
             {error && <p>Error...</p>}
             {loading && <TodosLoading/>}
@@ -139,7 +152,7 @@ function App()
                 <TodoForm addTodo={addTodo} setopenModal={setopenModal}/>
             </Modal>
         )} 
-        {/* </TodoContext.Consumer> */}
+     
         <CreateTodoButton setopenModal={setopenModal} />
     </React.Fragment>
   );

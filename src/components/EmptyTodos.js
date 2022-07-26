@@ -3,7 +3,7 @@ import React from "react";
 function EmptyTodos() 
 {
     return (
-        <p>Crea tu propio Todo</p>
+        <p>Crea tu primer Todo</p>
     );    
 }
 
