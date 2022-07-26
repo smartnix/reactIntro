@@ -9,6 +9,8 @@ import { TodoHeader } from '../components/TodoHeader';
 import { TodoCounter } from '../components/TodoCounter';
 import { TodoSearch } from '../components/TodoSearch';
 import { useTodos } from "./useTodos";
+import { EmptyTodos } from "../components/EmptyTodos";
+import { TodosError } from "../components/TodosError";
 
 
 // function App()
@@ -98,12 +100,28 @@ function App()
         </TodoHeader>
 
         {/* <TodoContext.Consumer> */}
-          
-        <TodoList>
+        <TodoList 
+            erro = {error}
+            loading = {loading}
+            searchedTodos = {searchedTodos}
+            onError = {() => <TodosError/>}
+            onLoading = {() => <TodosLoading/>}
+            onEmptyTodos = {() => <EmptyTodos/>}
+            render = {todo => (
+                                <TodoItem 
+                                key={todo.text}
+                                text={todo.text}
+                                completed = {todo.completed}
+                                onCompleted = {() => completeTodo(todo.text)}
+                                onDelete={() => deleteTodo(todo.text)}
+                                />  
+            )}
+        />
+        {/* <TodoList>
             {error && <p>Error...</p>}
             {loading && <TodosLoading/>}
 
-            {(!loading && !searchedTodos.length) && <p>Crea tu primera tarea</p>}
+            {(!loading && !searchedTodos.length) && <p><EmptyTodos/></p>}
 
             {searchedTodos.map(todo => (
                 <TodoItem 
@@ -114,7 +132,7 @@ function App()
                 onDelete={() => deleteTodo(todo.text)}
                 />    
             ))}
-        </TodoList>
+        </TodoList> */}
         {
             !!openModal && (
             <Modal>
