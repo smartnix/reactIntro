@@ -1,10 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { useLocalStorage } from "./useLocalStorage";
 
-
-const TodoContext = createContext();
-
-function TodoProvider(props) 
+function useTodos() 
 {
     const {
         item: todos,
@@ -75,26 +72,22 @@ function TodoProvider(props)
       }, [totalTodos]);// segundo parametro para saber cuando ejecuar el useEffect solo una vez pero si cuando  hay cambioos en el estado
  
     return (
-        <TodoContext.Provider 
-        value={{
-            totalTodos,
-            completedTodos,
-            searchValue,
-            setSearchValue,
-            searchedTodos,
-            completeTodo,
-            deleteTodo,
-            loading,
-            error,
-            openModal, 
-            setopenModal,
-            addTodo
+       {
+          totalTodos,
+          completedTodos,
+          searchValue,
+          setSearchValue,
+          searchedTodos,
+          completeTodo,
+          deleteTodo,
+          loading,
+          error,
+          openModal, 
+          setopenModal,
+          addTodo
           
-        }}>
-            {props.children}
-        </TodoContext.Provider>
+        }
     );
 }
-
  
-export {TodoContext, TodoProvider};
+export {useTodos};

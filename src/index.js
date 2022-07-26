@@ -1,8 +1,9 @@
 
 import ReactDOM from 'react-dom'; //Esto se cambia
 import './index.css';
-import App from './App';
+
 import React from 'react';
+import App from './App/App';
 
 ReactDOM.render( //esto tambien se cambia
     <App />,
