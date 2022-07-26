@@ -1,10 +1,12 @@
-import React from "react";
+import React, { Children } from "react";
 
-function TodoHeader({children}) 
+function TodoHeader({children, loading}) 
 {
     return (
         <header>
-           {children}
+           {Children
+           .toArray(children)
+           .map((child,index) => React.cloneElement(child, {loading, key:index}))} 
         </header>
     );
 }

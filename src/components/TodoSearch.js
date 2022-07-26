@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import  '../styles/TodoSearch.css';
 
-const TodoSearch = ({searchValue, setSearchValue}) => {
+const TodoSearch = ({searchValue, setSearchValue, loading}) => {
 
   const onSearchValueChange = (e) => {
     setSearchValue(e.target.value);
@@ -13,6 +13,7 @@ const TodoSearch = ({searchValue, setSearchValue}) => {
       placeholder="Cebolla" 
       value={searchValue}
       onChange={onSearchValueChange}
+      disabled = {loading}
       />
   )
 }
