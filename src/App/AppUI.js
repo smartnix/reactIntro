@@ -8,6 +8,10 @@ import { TodoContext } from '../TodoContext';
 import { Modal } from '../Modal/';
 import { TodoForm } from '../components/TodoForm';
 
+import { TodosError } from '../components/TodosError';
+import { TodosLoading } from '../components/TodosLoading';
+import { EmptyTodos } from '../components/EmptyTodos';
+
 
 function AppUI() 
 {
@@ -30,7 +34,7 @@ function AppUI()
                
             <TodoList>
                 {error && <p>Error...</p>}
-                {loading && <p>Estamos cargando...</p>}
+                {loading && <TodosLoading/>}
 
                 {(!loading && !searchedTodos.length) && <p>Crea tu primera tarea</p>}
 
