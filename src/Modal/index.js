@@ -1,4 +1,4 @@
-import ReactDOM, { createPortal } from 'react-dom'; //Esto se cambia
+import { createPortal } from 'react-dom'; //Esto se cambia
 import "../styles/Modal.css";
 
 function Modal({children}) 

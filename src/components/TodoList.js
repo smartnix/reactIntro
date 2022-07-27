@@ -13,9 +13,7 @@ const TodoList = (props) => {
       {(!!props.totalTodos && !props.searchedTodos.length) && props.onEmptySearchResults(props.searchText)}
 
       {props.showListItems && props.searchedTodos.map(renderFun)} {/* forma corta de iteracion*/} 
-        <ul>
-            {props.children}
-        </ul>
+       
     </section>
   )
 }

@@ -87,7 +87,7 @@ function App()
       sincronizeTodos,
       showListItems
     } = useTodos();  
-  console.log(showListItems)
+ 
   return(
     <React.Fragment>
         <TodoHeader loading = {loading}>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import  '../styles/TodoSearch.css';
 
 const TodoSearch = ({searchValue, setSearchValue, loading}) => {

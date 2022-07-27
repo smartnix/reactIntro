@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import  '../styles/TodoCounter.css';
 
  const TodoCounter = ({totalTodos, completedTodos, loading}) => {

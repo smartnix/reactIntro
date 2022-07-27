@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "../styles/TodoForm.css";
 
 function TodoForm({addTodo,setopenModal}) 
