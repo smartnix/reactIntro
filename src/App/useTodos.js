@@ -7,7 +7,9 @@ function useTodos()
         item: todos,
         saveItem: saveTodos,
         loading,
-        error
+        error,
+        sincronize: sincronizeTodos,
+        showListItems,
     
       } = useLocalStorage('TODOS_V1',[]);
     
@@ -83,7 +85,9 @@ function useTodos()
           error,
           openModal, 
           setopenModal,
-          addTodo
+          addTodo,
+          sincronizeTodos,
+          showListItems
           
         }
     );

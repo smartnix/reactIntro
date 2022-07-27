@@ -11,6 +11,7 @@ import { TodoSearch } from '../components/TodoSearch';
 import { useTodos } from "./useTodos";
 import { EmptyTodos } from "../components/EmptyTodos";
 import { TodosError } from "../components/TodosError";
+import { ChangeAlertWithStorageListener } from "../components/ChangeAlert";
 
 
 // function App()
@@ -82,9 +83,11 @@ function App()
       completedTodos,
       searchValue, 
       setSearchValue,
-      addTodo
+      addTodo,
+      sincronizeTodos,
+      showListItems
     } = useTodos();  
-  
+  console.log(showListItems)
   return(
     <React.Fragment>
         <TodoHeader loading = {loading}>
@@ -100,38 +103,41 @@ function App()
                 //  loading = {loading}
             /> 
         </TodoHeader>
-
+    
        
-        <TodoList 
-            totalTodos = {totalTodos}
-            error = {error}
-            loading = {loading}
-            searchText={searchValue}
-            searchedTodos = {searchedTodos}
-            onError = {() => <TodosError/>}
-            onLoading = {() => <TodosLoading/>}
-            onEmptyTodos = {() => <EmptyTodos/>}
-            onEmptySearchResults = {(searchText) => <p>No hay resultados para {searchText}</p>}
-            // render = {todo => (
-            //                     <TodoItem 
-            //                     key={todo.text}
-            //                     text={todo.text}
-            //                     completed = {todo.completed}
-            //                     onCompleted = {() => completeTodo(todo.text)}
-            //                     onDelete={() => deleteTodo(todo.text)}
-            //                     />  
-            // )}
-        >
-            {todo => (
-                        <TodoItem 
-                        key={todo.text}
-                        text={todo.text}
-                        completed = {todo.completed}
-                        onCompleted = {() => completeTodo(todo.text)}
-                        onDelete={() => deleteTodo(todo.text)}
-                        />  
-                    )}
-        </TodoList>
+            <TodoList 
+                totalTodos = {totalTodos}
+                error = {error}
+                loading = {loading}
+                searchText={searchValue}
+                searchedTodos = {searchedTodos}
+                showListItems = {showListItems}
+                onError = {() => <TodosError/>}
+                onLoading = {() => <TodosLoading/>}
+                
+                onEmptyTodos = {() => <EmptyTodos/>}
+                onEmptySearchResults = {(searchText) => <p>No hay resultados para {searchText}</p>}
+                // render = {todo => (
+                //                     <TodoItem 
+                //                     key={todo.text}
+                //                     text={todo.text}
+                //                     completed = {todo.completed}
+                //                     onCompleted = {() => completeTodo(todo.text)}
+                //                     onDelete={() => deleteTodo(todo.text)}
+                //                     />  
+                // )}
+            >
+                {todo => (
+                            <TodoItem 
+                            key={todo.text}
+                            text={todo.text}
+                            completed = {todo.completed}
+                            onCompleted = {() => completeTodo(todo.text)}
+                            onDelete={() => deleteTodo(todo.text)}
+                            />  
+                        )}
+            </TodoList>
+        
         {/* <TodoList>
             {error && <p>Error...</p>}
             {loading && <TodosLoading/>}
@@ -156,6 +162,7 @@ function App()
         )} 
      
         <CreateTodoButton setopenModal={setopenModal} />
+        <ChangeAlertWithStorageListener sincronize={sincronizeTodos}/>
     </React.Fragment>
   );
 }

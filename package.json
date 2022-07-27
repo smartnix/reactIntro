@@ -39,7 +39,9 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^4.0.0"
+    "gh-pages": "^4.0.0",
+    "react-error-overlay": "6.0.9"
   },
   "homepage": "https://smartnix.github.io/reactIntro"
+  
 }
