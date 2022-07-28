@@ -72,26 +72,31 @@ function useTodos()
       useEffect(() => {
         console.log('use efect')
       }, [totalTodos]);// segundo parametro para saber cuando ejecuar el useEffect solo una vez pero si cuando  hay cambioos en el estado
- 
-    return (
-       {
-          totalTodos,
-          completedTodos,
-          searchValue,
-          setSearchValue,
-          searchedTodos,
-          completeTodo,
-          deleteTodo,
-          loading,
-          error,
-          openModal, 
-          setopenModal,
-          addTodo,
-          sincronizeTodos,
-          showListItems
-          
-        }
-    );
+      
+    const state = {
+
+      totalTodos,
+      completedTodos,
+      searchValue,
+      searchedTodos,
+      loading,
+      error,
+      openModal, 
+      showListItems
+    }  
+
+    const stateUpdaters = {
+
+      setSearchValue,
+      completeTodo,
+      deleteTodo,
+      setopenModal,
+      addTodo,
+      sincronizeTodos,
+    }
+
+    return {state, stateUpdaters}
+    
 }
  
 export {useTodos};
