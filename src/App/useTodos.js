@@ -3,7 +3,8 @@ import { useLocalStorage } from "./useLocalStorage";
 
 function useTodos() 
 {
-    const {
+ 
+  const {
         item: todos,
         saveItem: saveTodos,
         loading,
@@ -15,7 +16,7 @@ function useTodos()
     
       const [searchValue, setSearchValue] = useState('');
       const [openModal, setopenModal] = useState(false);
-    
+      console.log(error)  ;
       const completedTodos = todos.filter(todos => !!todos.completed).length;
       const totalTodos = todos.length;
     
